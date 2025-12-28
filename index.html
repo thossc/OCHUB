@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OC Gallery - Character Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --csp-blue: #0075ff;
+            --csp-blue-dark: #0057cc;
+            --csp-light: #f5f9ff;
+            --csp-gray: #f0f4f9;
+            --csp-dark-gray: #333f50;
+            --csp-border: #d6e4ff;
+            --csp-accent: #ff6b6b;
+            --csp-shadow: rgba(0, 85, 204, 0.1);
+            --text-primary: #1a2b4c;
+            --text-secondary: #5a6b8c;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo UI', sans-serif;
+            background-color: var(--csp-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header - CSP Style */
+        header {
+            background-color: white;
+            border-bottom: 1px solid var(--csp-border);
+            box-shadow: 0 2px 15px var(--csp-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--csp-blue);
+        }
+
+        .logo-icon {
+            background-color: var(--csp-blue);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--csp-blue);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--csp-blue);
+            border-radius: 1px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #e6f0ff 0%, #f0f7ff 100%);
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--csp-blue);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 117, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--csp-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 117, 255, 0.4);
+        }
+
+        /* Character Grid - CSP Card Style */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--csp-border);
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .character-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--csp-shadow);
+            transition: all 0.3s;
+            border: 1px solid var(--csp-border);
+        }
+
+        .character-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 85, 204, 0.15);
+        }
+
+        .card-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .character-card:hover .card-header img {
+            transform: scale(1.05);
+        }
+
+        .character-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--csp-blue);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .character-name {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .character-alias {
+            color: var(--csp-blue);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .character-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-footer {
+            padding: 15px 20px;
+            border-top: 1px solid var(--csp-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-details {
+            color: var(--csp-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+
+        .view-details:hover {
+            color: var(--csp-blue-dark);
+        }
+
+        .character-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .trait {
+            background-color: var(--csp-gray);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Detailed Character View */
+        .character-detail {
+            display: none;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 85, 204, 0.15);
+            margin-bottom: 60px;
+            border: 1px solid var(--csp-border);
+        }
+
+        .detail-header {
+            background: linear-gradient(135deg, var(--csp-blue) 0%, var(--csp-blue-dark) 100%);
+            color: white;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .detail-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .close-detail {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .close-detail:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .detail-body {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .detail-image {
+            background-color: var(--csp-gray);
+            height: 100%;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .detail-image i {
+            font-size: 8rem;
+            color: var(--csp-blue);
+            opacity: 0.5;
+        }
+
+        .detail-info {
+            padding: 40px;
+        }
+
+        .detail-section {
+            margin-bottom: 35px;
+        }
+
+        .detail-section h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--csp-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-section h3 i {
+            color: var(--csp-blue);
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .highlight {
+            color: var(--csp-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--csp-dark-gray);
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .detail-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-image {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .character-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            .detail-info {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <span>OC Gallery</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="nav-link active">Gallery</a>
+                <a href="#" class="nav-link">Characters</a>
+                <a href="#" class="nav-link">Artwork</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Original Character Portfolio</h1>
+            <p>A curated collection of unique original characters, designed and developed with creative storytelling in mind. Each character has a detailed backstory, personality, and visual design.</p>
+            <a href="#" class="cta-button">
+                <i class="fas fa-plus"></i>
+                Add New Character
+            </a>
+        </section>
+
+        <section>
+            <h2 class="section-title">Character Roster</h2>
+            <div class="character-grid" id="characterGrid">
+                <!-- Character cards will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <section id="characterDetail" class="character-detail">
+            <!-- Detailed character view will be populated by JavaScript -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>OC Gallery</h3>
+                    <p>A portfolio for original characters, inspired by the clean design of Clip Studio Paint.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Character Database</a></li>
+                        <li><a href="#">Artwork Showcase</a></li>
+                        <li><a href="#">Creator Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Character Templates</a></li>
+                        <li><a href="#">Design Tips</a></li>
+                        <li><a href="#">Storytelling Guides</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 OC Gallery. Inspired by Clip Studio Paint interface. All character designs are original creations.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample OC data - you can expand this with more characters
+        const ocCharacters = [
+            {
+                id: 1,
+                name: "Theodore Alistair Sebastian",
+                alias: "Theosphere",
+                age: "16 Years",
+                height: "5'9\" (175 cm)",
+                birthday: "October 17",
+                zodiac: "Libra",
+                hometown: "Vancouver, Canada",
+                heritage: "Half Korean, Half Scottish-Canadian",
+                hair: "White (professionally dyed)",
+                eyes: "Grey",
+                blood: "O+",
+                traits: ["Creative", "Tech-Savvy", "Bicultural", "Introspective"],
+                color: "#0075ff",
+                icon: "fas fa-user-astronaut"
+            },
+            {
+                id: 2,
+                name: "Luna Mei Takahashi",
+                alias: "Lunastra",
+                age: "17 Years",
+                height: "5'4\" (163 cm)",
+                birthday: "March 3",
+                zodiac: "Pisces",
+                hometown: "Tokyo, Japan",
+                heritage: "Japanese-American",
+                hair: "Silver-blue",
+                eyes: "Violet",
+                blood: "AB-",
+                traits: ["Artistic", "Empathetic", "Dreamer", "Musical"],
+                color: "#9d4edd",
+                icon: "fas fa-moon"
+            },
+            {
+                id: 3,
+                name: "Alexander ",
+                alias: "Ironclad",
+                age: "19 Years",
+                height: "6'1\" (185 cm)",
+                birthday: "July 22",
+                zodiac: "Leo",
+                hometown: "Berlin, Germany",
+                heritage: "German-Russian",
+                hair: "Platinum Blonde",
+                eyes: "Blue",
+                blood: "B+",
+                traits: ["Strategic", "Protective", "Leader", "Determined"],
+                color: "#ff6d00",
+                icon: "fas fa-shield-alt"
+            },
+            {
+                id: 4,
+                name: "Sakura Hana",
+                alias: "Blossom",
+                age: "15 Years",
+                height: "5'2\" (157 cm)",
+                birthday: "April 5",
+                zodiac: "Aries",
+                hometown: "Kyoto, Japan",
+                heritage: "Japanese",
+                hair: "Pink Ombre",
+                eyes: "Brown",
+                blood: "A+",
+                traits: ["Energetic", "Optimistic", "Artistic", "Traditional"],
+                color: "#ff5d8f",
+                icon: "fas fa-flower"
+            },
+            {
+                id: 5,
+                name: "Elara Nightshade",
+                alias: "Stella",
+                age: "18 Years",
+                height: "5'7\" (170 cm)",
+                birthday: "December 14",
+                zodiac: "Sagittarius",
+                hometown: "Edinburgh, Scotland",
+                heritage: "Scottish-Irish",
+                hair: "Raven Black",
+                eyes: "Green",
+                blood: "O-",
+                traits: ["Mysterious", "Intelligent", "Independent", "Observant"],
+                color: "#38b000",
+                icon: "fas fa-star"
+            },
+            {
+                id: 6,
+                name: "Kairos Valerius",
+                alias: "Chrono",
+                age: "20 Years",
+                height: "5'11\" (180 cm)",
+                birthday: "February 29",
+                zodiac: "Pisces",
+                hometown: "Athens, Greece",
+                heritage: "Greek-Italian",
+                hair: "Dark Brown",
+                eyes: "Amber",
+                blood: "A-",
+                traits: ["Analytical", "Time-conscious", "Philosophical", "Precise"],
+                color: "#00bbf9",
+                icon: "fas fa-clock"
+            }
+        ];
+
+        // Function to generate character cards
+        function generateCharacterCards() {
+            const grid = document.getElementById('characterGrid');
+            grid.innerHTML = '';
+            
+            ocCharacters.forEach(character => {
+                const card = document.createElement('div');
+                card.className = 'character-card';
+                card.dataset.id = character.id;
+                
+                card.innerHTML = `
+                    <div class="card-header" style="background-color: ${character.color}20;">
+                        <div class="character-tag">OC</div>
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: ${character.color}; font-size: 5rem;">
+                            <i class="${character.icon}"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="character-name">
+                            <span>${character.name}</span>
+                        </div>
+                        <div class="character-alias">"${character.alias}"</div>
+                        <div class="character-info">
+                            <div class="info-item">
+                                <span class="info-label">Age</span>
+                                <span class="info-value">${character.age}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Height</span>
+                                <span class="info-value">${character.height}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Zodiac</span>
+                                <span class="info-value">${character.zodiac}</span>
+                            </div>
+                        </div>
+                        <div class="character-traits">
+                            ${character.traits.map(trait => `<span class="trait">${trait}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="view-details" data-id="${character.id}">
+                            <i class="fas fa-arrow-right"></i>
+                            View Details
+                        </a>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">ID: ${character.id.toString().padStart(3, '0')}</span>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            // Add event listeners to "View Details" buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = parseInt(this.dataset.id);
+                    showCharacterDetail(id);
+                });
+            });
+        }
+
+        // Function to show character detail view
+        function showCharacterDetail(id) {
+            const character = ocCharacters.find(c => c.id === id);
+            if (!character) return;
+            
+            const detailSection = document.getElementById('characterDetail');
+            
+            detailSection.innerHTML = `
+                <div class="detail-header">
+                    <div class="detail-title">
+                        <h2>${character.name}</h2>
+                        <div class="detail-subtitle">Alias: "${character.alias}"</div>
+                    </div>
+                    <button class="close-detail">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-image" style="background-color: ${character.color}10;">
+                        <i class="${character.icon}" style="color: ${character.color};"></i>
+                    </div>
+                    <div class="detail-info">
+                        <div class="detail-section">
+                            <h3><i class="fas fa-id-card"></i> Basic Information</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Age</span>
+                                    <span class="detail-value">${character.age}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Height</span>
+                                    <span class="detail-value">${character.height}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Date of Birth</span>
+                                    <span class="detail-value">${character.birthday}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Zodiac Sign</span>
+                                    <span class="detail-value">${character.zodiac}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Blood Type</span>
+                                    <span class="detail-value">${character.blood}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3><i class="fas fa-globe-americas"></i> Background</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Hometown</span>
+                                    <span class="detail-value">${character.hometown}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Heritage</span>
+                                    <span class="detail-value">${character.heritage}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3><i class="fas fa-palette"></i> Appearance</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Hair Color</span>
+                                    <span class="detail-value">${character.hair}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Eye Color</span>
+                                    <span class="detail-value">${character.eyes}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3><i class="fas fa-star"></i> Character Traits</h3>
+                            <div class="character-traits">
+                                ${character.traits.map(trait => `<span class="trait">${trait}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Show the detail section
+            detailSection.style.display = 'block';
+            
+            // Scroll to detail section
+            detailSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Add event listener to close button
+            detailSection.querySelector('.close-detail').addEventListener('click', function() {
+                detailSection.style.display = 'none';
+                document.getElementById('characterGrid').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCharacterCards();
+            
+            // Add active state to navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // CTA button functionality
+            document.querySelector('.cta-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('In a real implementation, this would open a form to add a new character!');
+            });
+        });
+    </script>
+</body>
+</html>
