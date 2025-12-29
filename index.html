@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theosphere | OC Profile - CSP Style</title>
+    <title>OC Gallery | Character Profiles</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,7 +35,7 @@
             line-height: 1.6;
         }
 
-        /* Header - CSP Style */
+        /* Header */
         .csp-header {
             background-color: var(--csp-panel);
             border-bottom: 1px solid var(--csp-border);
@@ -97,77 +97,164 @@
             background-color: var(--csp-accent);
         }
 
-        /* Main Container */
+        /* Main Layout */
         .csp-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 20px;
+            grid-template-columns: 280px 1fr;
+            min-height: calc(100vh - 50px);
         }
 
-        /* Left Panel - Character Summary */
-        .left-panel {
+        /* Character List Sidebar */
+        .character-sidebar {
+            background-color: var(--csp-panel);
+            border-right: 1px solid var(--csp-border);
+            padding: 20px 0;
+            overflow-y: auto;
+            max-height: calc(100vh - 50px);
+        }
+
+        .sidebar-header {
+            padding: 0 20px 15px;
+            border-bottom: 1px solid var(--csp-border);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .add-character {
+            background-color: var(--csp-accent);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .character-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .character-list-item {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .character-list-item:hover {
+            background-color: var(--csp-medium);
+        }
+
+        .character-list-item.active {
+            background-color: var(--csp-medium);
+            border-left-color: var(--csp-accent);
+        }
+
+        .character-list-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--csp-medium) 0%, var(--csp-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--csp-accent);
+            border: 1px solid var(--csp-border);
+        }
+
+        .character-list-info {
+            flex: 1;
+        }
+
+        .character-list-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .character-list-alias {
+            font-size: 0.85rem;
+            color: var(--csp-text-dim);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            padding: 30px;
+            overflow-y: auto;
+            max-height: calc(100vh - 50px);
+        }
+
+        /* Character Profile */
+        .character-profile {
             background-color: var(--csp-panel);
             border-radius: 8px;
             border: 1px solid var(--csp-border);
+            margin-bottom: 30px;
             overflow: hidden;
         }
 
-        .panel-header {
+        .profile-header {
             background-color: var(--csp-medium);
-            padding: 18px 20px;
+            padding: 25px 30px;
             border-bottom: 1px solid var(--csp-border);
-            font-size: 1.1rem;
-            font-weight: 600;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 25px;
         }
 
-        .panel-content {
-            padding: 20px;
-        }
-
-        .character-avatar {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 25px;
-            border-radius: 6px;
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
             background: linear-gradient(135deg, var(--csp-medium) 0%, var(--csp-dark) 100%);
-            border: 1px solid var(--csp-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
+            font-size: 3.5rem;
             color: var(--csp-accent);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--csp-border);
+            flex-shrink: 0;
         }
 
-        .character-name-main {
-            font-size: 1.8rem;
+        .profile-title {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 2rem;
             font-weight: 600;
             margin-bottom: 5px;
-            text-align: center;
         }
 
-        .character-alias {
-            font-size: 1.1rem;
+        .profile-alias {
+            font-size: 1.2rem;
             color: var(--csp-accent);
-            margin-bottom: 20px;
-            text-align: center;
+            margin-bottom: 15px;
         }
 
-        .character-tags {
+        .profile-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 25px;
-            justify-content: center;
         }
 
-        .character-tag {
+        .profile-tag {
             background-color: rgba(74, 158, 255, 0.15);
             color: var(--csp-accent);
             padding: 5px 12px;
@@ -176,150 +263,131 @@
             border: 1px solid rgba(74, 158, 255, 0.3);
         }
 
-        .character-stats {
-            margin-top: 20px;
+        /* Profile Content */
+        .profile-content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .stat-label {
-            color: var(--csp-text-dim);
-            font-size: 0.9rem;
-        }
-
-        .stat-value {
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        /* Right Panel - Character Details */
-        .right-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .detail-card {
-            background-color: var(--csp-panel);
-            border-radius: 8px;
+        .profile-section {
+            background-color: var(--csp-medium);
+            border-radius: 6px;
             border: 1px solid var(--csp-border);
             overflow: hidden;
         }
 
-        .detail-header {
-            background-color: var(--csp-medium);
-            padding: 18px 20px;
+        .section-header {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
             border-bottom: 1px solid var(--csp-border);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .detail-header i {
+        .section-header i {
             color: var(--csp-accent);
         }
 
-        .detail-content {
-            padding: 25px;
+        .section-content {
+            padding: 20px;
         }
 
-        /* Info Grid Layout */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 15px;
         }
 
         .info-item {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .info-label {
             color: var(--csp-text-dim);
             font-size: 0.9rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .info-value {
-            font-size: 1.05rem;
             font-weight: 500;
-            background-color: var(--csp-medium);
-            border: 1px solid var(--csp-border);
-            border-radius: 6px;
-            padding: 12px 15px;
-            min-height: 46px;
-            display: flex;
-            align-items: center;
+            text-align: right;
         }
 
         .info-value.highlight {
             color: var(--csp-accent);
-            border-color: rgba(74, 158, 255, 0.3);
         }
 
-        /* Color Swatches */
-        .color-swatches {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
+        /* OC Gallery Section */
+        .gallery-section {
+            margin-top: 40px;
         }
 
-        .color-swatch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .swatch {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            border: 2px solid var(--csp-border);
-        }
-
-        .swatch-label {
-            font-size: 0.8rem;
-            color: var(--csp-text-dim);
-        }
-
-        .swatch-white {
-            background-color: #f5f5f5;
-        }
-
-        .swatch-grey {
-            background-color: #a0a0a0;
-        }
-
-        /* Traits Section */
-        .traits-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .trait {
-            background-color: var(--csp-medium);
-            border: 1px solid var(--csp-border);
-            border-radius: 6px;
-            padding: 10px 15px;
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--csp-border);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .trait i {
+        .section-title i {
             color: var(--csp-accent);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            background-color: var(--csp-panel);
+            border-radius: 6px;
+            border: 1px solid var(--csp-border);
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--csp-accent);
+        }
+
+        .gallery-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--csp-medium) 0%, var(--csp-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--csp-accent);
+            opacity: 0.8;
+        }
+
+        .gallery-info {
+            padding: 15px;
+            border-top: 1px solid var(--csp-border);
+        }
+
+        .gallery-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .gallery-description {
+            font-size: 0.85rem;
+            color: var(--csp-text-dim);
         }
 
         /* Footer */
@@ -350,15 +418,40 @@
             color: var(--csp-text);
         }
 
-        /* Responsive Design */
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--csp-medium);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--csp-light);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--csp-border);
+        }
+
+        /* Responsive */
         @media (max-width: 992px) {
             .csp-container {
                 grid-template-columns: 1fr;
             }
             
-            .left-panel {
-                max-width: 500px;
-                margin: 0 auto;
+            .character-sidebar {
+                display: none;
+            }
+            
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
 
@@ -370,13 +463,13 @@
                 gap: 15px;
             }
             
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
             }
             
-            .info-grid {
-                grid-template-columns: 1fr;
+            .profile-tags {
+                justify-content: center;
             }
         }
     </style>
@@ -388,230 +481,387 @@
             <div class="logo-icon">
                 <i class="fas fa-user-circle"></i>
             </div>
-            <span>OC PROFILE</span>
+            <span>OC GALLERY</span>
         </div>
         
         <nav class="nav-links">
-            <a href="#" class="nav-link active">Character</a>
+            <a href="#" class="nav-link active">Characters</a>
             <a href="#" class="nav-link">Gallery</a>
-            <a href="#" class="nav-link">Story</a>
-            <a href="#" class="nav-link">Relationships</a>
+            <a href="#" class="nav-link">Stories</a>
+            <a href="#" class="nav-link">Timeline</a>
             <a href="#" class="nav-link">Settings</a>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="csp-container">
-        <!-- Left Panel - Character Summary -->
-        <aside class="left-panel">
-            <div class="panel-header">
-                <span>Character Summary</span>
-                <i class="fas fa-ellipsis-v" style="color: var(--csp-text-dim); cursor: pointer;"></i>
+    <!-- Main Layout -->
+    <div class="csp-container">
+        <!-- Character List Sidebar -->
+        <aside class="character-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">Character Roster</div>
+                <div class="add-character" title="Add New Character">
+                    <i class="fas fa-plus"></i>
+                </div>
             </div>
             
-            <div class="panel-content">
-                <div class="character-avatar">
-                    <i class="fas fa-user-astronaut"></i>
-                </div>
-                
-                <h1 class="character-name-main">Theodore Alistair Sebastian</h1>
-                <div class="character-alias">"Theosphere"</div>
-                
-                <div class="character-tags">
-                    <span class="character-tag">OC</span>
-                    <span class="character-tag">16 Years Old</span>
-                    <span class="character-tag">Libra</span>
-                    <span class="character-tag">Half-Korean</span>
-                    <span class="character-tag">Vancouver</span>
-                </div>
-                
-                <div class="character-stats">
-                    <div class="stat-item">
-                        <span class="stat-label">ID</span>
-                        <span class="stat-value">#OC-001</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Status</span>
-                        <span class="stat-value" style="color: var(--csp-highlight);">Active</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Created</span>
-                        <span class="stat-value">Oct 17, 2023</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Last Updated</span>
-                        <span class="stat-value">Today</span>
-                    </div>
-                </div>
+            <div class="character-list" id="characterList">
+                <!-- Character list items will be populated by JavaScript -->
             </div>
         </aside>
 
-        <!-- Right Panel - Character Details -->
-        <section class="right-panel">
-            <!-- Basic Information Card -->
-            <div class="detail-card">
-                <div class="detail-header">
-                    <i class="fas fa-id-card"></i>
-                    <span>Basic Information</span>
-                </div>
-                
-                <div class="detail-content">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-label">Legal Name</div>
-                            <div class="info-value">Theodore Alistair Sebastian</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Preferred Alias</div>
-                            <div class="info-value highlight">Theosphere (Thosphere)</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Age</div>
-                            <div class="info-value">16 Years</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Date of Birth</div>
-                            <div class="info-value">October 17</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Zodiac Sign</div>
-                            <div class="info-value">Libra ♎</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Blood Type</div>
-                            <div class="info-value">O Positive (O+)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Character Profile -->
+            <section class="character-profile" id="characterProfile">
+                <!-- Character profile will be populated by JavaScript -->
+            </section>
 
-            <!-- Appearance Card -->
-            <div class="detail-card">
-                <div class="detail-header">
-                    <i class="fas fa-user"></i>
-                    <span>Appearance</span>
-                </div>
+            <!-- OC Gallery Section -->
+            <section class="gallery-section">
+                <h2 class="section-title">
+                    <i class="fas fa-images"></i>
+                    OC Gallery
+                </h2>
                 
-                <div class="detail-content">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-label">Height</div>
-                            <div class="info-value">5 feet, 9 inches (175 cm)</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Hair Color</div>
-                            <div class="info-value">White (professionally dyed)</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Eye Color</div>
-                            <div class="info-value">Grey</div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 20px;">
-                        <div class="info-label">Color Palette</div>
-                        <div class="color-swatches">
-                            <div class="color-swatch">
-                                <div class="swatch swatch-white"></div>
-                                <div class="swatch-label">Hair</div>
-                            </div>
-                            <div class="color-swatch">
-                                <div class="swatch swatch-grey"></div>
-                                <div class="swatch-label">Eyes</div>
-                            </div>
-                            <div class="color-swatch">
-                                <div class="swatch" style="background-color: #4a9eff;"></div>
-                                <div class="swatch-label">Accent</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="gallery-grid" id="ocGallery">
+                    <!-- Gallery items will be populated by JavaScript -->
                 </div>
-            </div>
-
-            <!-- Background Card -->
-            <div class="detail-card">
-                <div class="detail-header">
-                    <i class="fas fa-globe-americas"></i>
-                    <span>Background & Heritage</span>
-                </div>
-                
-                <div class="detail-content">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-label">Hometown</div>
-                            <div class="info-value">Vancouver, British Columbia, Canada</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Heritage</div>
-                            <div class="info-value">Half Korean, Half Scottish-Canadian</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Mother's Side</div>
-                            <div class="info-value">Korean</div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-label">Father's Side</div>
-                            <div class="info-value">Scottish-Canadian</div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 25px;">
-                        <div class="info-label">Character Traits</div>
-                        <div class="traits-container">
-                            <div class="trait">
-                                <i class="fas fa-palette"></i>
-                                <span>Creative</span>
-                            </div>
-                            <div class="trait">
-                                <i class="fas fa-laptop-code"></i>
-                                <span>Tech-Savvy</span>
-                            </div>
-                            <div class="trait">
-                                <i class="fas fa-language"></i>
-                                <span>Bicultural</span>
-                            </div>
-                            <div class="trait">
-                                <i class="fas fa-brain"></i>
-                                <span>Introspective</span>
-                            </div>
-                            <div class="trait">
-                                <i class="fas fa-balance-scale"></i>
-                                <span>Balanced (Libra)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
 
     <!-- Footer -->
     <footer class="csp-footer">
         <div>
-            &copy; 2023 OC Profile - Theosphere. Designed with Clip Studio Paint aesthetic.
+            &copy; 2023 OC Gallery - Clip Studio Paint Style
         </div>
         
         <div class="footer-links">
-            <a href="#" class="footer-link">Export Profile</a>
-            <a href="#" class="footer-link">Share</a>
+            <a href="#" class="footer-link">Export Data</a>
             <a href="#" class="footer-link">GitHub</a>
+            <a href="#" class="footer-link">Documentation</a>
         </div>
     </footer>
 
     <script>
-        // Simple interactivity
+        // OC Character Data
+        const ocCharacters = [
+            {
+                id: 1,
+                name: "Theodore Alistair Sebastian",
+                alias: "Theosphere",
+                age: "16 Years",
+                height: "5'9\" (175 cm)",
+                birthday: "October 17",
+                zodiac: "Libra",
+                hometown: "Vancouver, Canada",
+                heritage: "Half Korean, Half Scottish-Canadian",
+                hair: "White (professionally dyed)",
+                eyes: "Grey",
+                blood: "O+",
+                traits: ["Creative", "Tech-Savvy", "Bicultural", "Introspective", "Artistic"],
+                color: "#4a9eff",
+                icon: "fas fa-user-astronaut"
+            },
+            {
+                id: 2,
+                name: "Luna Mei Takahashi",
+                alias: "Lunastra",
+                age: "17 Years",
+                height: "5'4\" (163 cm)",
+                birthday: "March 3",
+                zodiac: "Pisces",
+                hometown: "Tokyo, Japan",
+                heritage: "Japanese-American",
+                hair: "Silver-blue",
+                eyes: "Violet",
+                blood: "AB-",
+                traits: ["Artistic", "Empathetic", "Dreamer", "Musical"],
+                color: "#9d4edd",
+                icon: "fas fa-moon"
+            },
+            {
+                id: 3,
+                name: "Alexander Schmidt",
+                alias: "Ironclad",
+                age: "19 Years",
+                height: "6'1\" (185 cm)",
+                birthday: "July 22",
+                zodiac: "Leo",
+                hometown: "Berlin, Germany",
+                heritage: "German-Russian",
+                hair: "Platinum Blonde",
+                eyes: "Blue",
+                blood: "B+",
+                traits: ["Strategic", "Protective", "Leader", "Determined"],
+                color: "#ff6d00",
+                icon: "fas fa-shield-alt"
+            },
+            {
+                id: 4,
+                name: "Sakura Hana",
+                alias: "Blossom",
+                age: "15 Years",
+                height: "5'2\" (157 cm)",
+                birthday: "April 5",
+                zodiac: "Aries",
+                hometown: "Kyoto, Japan",
+                heritage: "Japanese",
+                hair: "Pink Ombre",
+                eyes: "Brown",
+                blood: "A+",
+                traits: ["Energetic", "Optimistic", "Artistic", "Traditional"],
+                color: "#ff5d8f",
+                icon: "fas fa-flower"
+            }
+        ];
+
+        // OC Gallery Images
+        const galleryImages = [
+            {
+                id: 1,
+                title: "Character Concept",
+                description: "Initial design sketch",
+                characterId: 1,
+                icon: "fas fa-pencil-alt"
+            },
+            {
+                id: 2,
+                title: "Full Body Render",
+                description: "Complete character illustration",
+                characterId: 1,
+                icon: "fas fa-user"
+            },
+            {
+                id: 3,
+                title: "Expression Sheet",
+                description: "Various facial expressions",
+                characterId: 1,
+                icon: "fas fa-smile"
+            },
+            {
+                id: 4,
+                title: "Casual Outfit",
+                description: "Everyday clothing design",
+                characterId: 1,
+                icon: "fas fa-tshirt"
+            },
+            {
+                id: 5,
+                title: "Lunastra Portrait",
+                description: "Character portrait",
+                characterId: 2,
+                icon: "fas fa-portrait"
+            },
+            {
+                id: 6,
+                title: "Ironclad Armor Design",
+                description: "Armor concept art",
+                characterId: 3,
+                icon: "fas fa-chess-knight"
+            }
+        ];
+
+        // Generate Character List
+        function generateCharacterList() {
+            const listContainer = document.getElementById('characterList');
+            listContainer.innerHTML = '';
+            
+            ocCharacters.forEach(character => {
+                const listItem = document.createElement('div');
+                listItem.className = 'character-list-item';
+                listItem.dataset.id = character.id;
+                
+                listItem.innerHTML = `
+                    <div class="character-list-avatar" style="color: ${character.color};">
+                        <i class="${character.icon}"></i>
+                    </div>
+                    <div class="character-list-info">
+                        <div class="character-list-name">${character.name.split(' ')[0]}</div>
+                        <div class="character-list-alias">${character.alias}</div>
+                    </div>
+                `;
+                
+                listItem.addEventListener('click', function() {
+                    // Remove active class from all items
+                    document.querySelectorAll('.character-list-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Load character profile
+                    loadCharacterProfile(character.id);
+                });
+                
+                listContainer.appendChild(listItem);
+            });
+            
+            // Activate first character by default
+            if (ocCharacters.length > 0) {
+                document.querySelector('.character-list-item').classList.add('active');
+                loadCharacterProfile(ocCharacters[0].id);
+            }
+        }
+
+        // Load Character Profile
+        function loadCharacterProfile(characterId) {
+            const character = ocCharacters.find(c => c.id === characterId);
+            if (!character) return;
+            
+            const profileContainer = document.getElementById('characterProfile');
+            
+            profileContainer.innerHTML = `
+                <div class="profile-header">
+                    <div class="profile-avatar-large" style="color: ${character.color};">
+                        <i class="${character.icon}"></i>
+                    </div>
+                    <div class="profile-title">
+                        <h1 class="profile-name">${character.name}</h1>
+                        <div class="profile-alias">"${character.alias}"</div>
+                        <div class="profile-tags">
+                            <span class="profile-tag">OC</span>
+                            <span class="profile-tag">${character.age}</span>
+                            <span class="profile-tag">${character.zodiac}</span>
+                            <span class="profile-tag">${character.hometown.split(',')[0]}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-content">
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <i class="fas fa-id-card"></i>
+                            <span>Basic Information</span>
+                        </div>
+                        <div class="section-content">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Age</span>
+                                    <span class="info-value">${character.age}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Date of Birth</span>
+                                    <span class="info-value">${character.birthday}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Zodiac</span>
+                                    <span class="info-value">${character.zodiac}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Blood Type</span>
+                                    <span class="info-value">${character.blood}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <i class="fas fa-user"></i>
+                            <span>Appearance</span>
+                        </div>
+                        <div class="section-content">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Height</span>
+                                    <span class="info-value">${character.height}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Hair Color</span>
+                                    <span class="info-value highlight">${character.hair}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Eye Color</span>
+                                    <span class="info-value">${character.eyes}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <i class="fas fa-globe-americas"></i>
+                            <span>Background</span>
+                        </div>
+                        <div class="section-content">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Hometown</span>
+                                    <span class="info-value">${character.hometown}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Heritage</span>
+                                    <span class="info-value">${character.heritage}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <i class="fas fa-star"></i>
+                            <span>Character Traits</span>
+                        </div>
+                        <div class="section-content">
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                ${character.traits.map(trait => `
+                                    <div style="background-color: var(--csp-panel); padding: 8px 15px; border-radius: 6px; border: 1px solid var(--csp-border); font-size: 0.9rem;">
+                                        ${trait}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Update gallery to show images for this character
+            updateGallery(characterId);
+        }
+
+        // Update Gallery with Character Images
+        function updateGallery(characterId) {
+            const galleryContainer = document.getElementById('ocGallery');
+            const characterImages = galleryImages.filter(img => img.characterId === characterId);
+            const character = ocCharacters.find(c => c.id === characterId);
+            
+            galleryContainer.innerHTML = '';
+            
+            if (characterImages.length === 0) {
+                galleryContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--csp-text-dim);">
+                        <i class="fas fa-images" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                        <div>No gallery images for this character yet.</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            characterImages.forEach(image => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                galleryItem.innerHTML = `
+                    <div class="gallery-image" style="color: ${character.color};">
+                        <i class="${image.icon}"></i>
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-title">${image.title}</div>
+                        <div class="gallery-description">${image.description}</div>
+                    </div>
+                `;
+                
+                galleryContainer.appendChild(galleryItem);
+            });
+        }
+
+        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Active navigation
+            generateCharacterList();
+            
+            // Navigation click handlers
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -621,28 +871,19 @@
                 });
             });
             
-            // Add hover effect to trait items
-            const traits = document.querySelectorAll('.trait');
-            traits.forEach(trait => {
-                trait.addEventListener('mouseenter', function() {
-                    this.style.backgroundColor = 'var(--csp-light)';
-                    this.style.borderColor = 'var(--csp-accent)';
-                });
-                
-                trait.addEventListener('mouseleave', function() {
-                    this.style.backgroundColor = '';
-                    this.style.borderColor = '';
-                });
+            // Add character button
+            document.querySelector('.add-character').addEventListener('click', function() {
+                alert('Add Character feature would open a form in a real implementation.');
             });
             
-            // Character tag click effect
-            const tags = document.querySelectorAll('.character-tag');
-            tags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
+            // Footer link handlers
+            document.querySelectorAll('.footer-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // In a real implementation, these would navigate to different pages
+                    if (this.textContent === 'GitHub') {
+                        alert('Would navigate to GitHub repository');
+                    }
                 });
             });
         });
