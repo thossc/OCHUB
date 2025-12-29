@@ -3,73 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OC Gallery - Character Portfolio</title>
+    <title>Theosphere | OC Profile - CSP Style</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo UI', sans-serif;
         }
 
         :root {
-            --csp-blue: #0075ff;
-            --csp-blue-dark: #0057cc;
-            --csp-light: #f5f9ff;
-            --csp-gray: #f0f4f9;
-            --csp-dark-gray: #333f50;
-            --csp-border: #d6e4ff;
-            --csp-accent: #ff6b6b;
-            --csp-shadow: rgba(0, 85, 204, 0.1);
-            --text-primary: #1a2b4c;
-            --text-secondary: #5a6b8c;
+            --csp-dark: #2a2e35;
+            --csp-medium: #3a3f47;
+            --csp-light: #4a4f57;
+            --csp-panel: #353a41;
+            --csp-border: #5a5f67;
+            --csp-text: #e1e7ef;
+            --csp-text-dim: #a1a7af;
+            --csp-accent: #4a9eff;
+            --csp-accent-dark: #3a8eef;
+            --csp-highlight: #5abf8a;
+            --csp-warning: #ff8a4a;
+            --csp-toolbar: #2d3138;
         }
 
         body {
-            font-family: 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo UI', sans-serif;
-            background-color: var(--csp-light);
-            color: var(--text-primary);
+            background-color: var(--csp-dark);
+            color: var(--csp-text);
+            min-height: 100vh;
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
         /* Header - CSP Style */
-        header {
-            background-color: white;
+        .csp-header {
+            background-color: var(--csp-panel);
             border-bottom: 1px solid var(--csp-border);
-            box-shadow: 0 2px 15px var(--csp-shadow);
+            padding: 0 20px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--csp-blue);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--csp-text);
         }
 
         .logo-icon {
-            background-color: var(--csp-blue);
+            background-color: var(--csp-accent);
             color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -77,158 +71,170 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
         }
 
         .nav-link {
+            color: var(--csp-text-dim);
             text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            padding: 8px 0;
+            font-size: 0.95rem;
+            padding: 5px 0;
             position: relative;
             transition: color 0.2s;
         }
 
         .nav-link:hover, .nav-link.active {
-            color: var(--csp-blue);
+            color: var(--csp-text);
         }
 
         .nav-link.active::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -1px;
             left: 0;
             width: 100%;
             height: 2px;
-            background-color: var(--csp-blue);
-            border-radius: 1px;
+            background-color: var(--csp-accent);
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #e6f0ff 0%, #f0f7ff 100%);
-            padding: 60px 0;
-            margin-bottom: 40px;
-            border-radius: 0 0 20px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            color: var(--text-primary);
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: var(--csp-blue);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0, 117, 255, 0.3);
-            transition: all 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: var(--csp-blue-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 117, 255, 0.4);
-        }
-
-        /* Character Grid - CSP Card Style */
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--csp-border);
-        }
-
-        .character-grid {
+        /* Main Container */
+        .csp-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
         }
 
-        .character-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px var(--csp-shadow);
-            transition: all 0.3s;
+        /* Left Panel - Character Summary */
+        .left-panel {
+            background-color: var(--csp-panel);
+            border-radius: 8px;
             border: 1px solid var(--csp-border);
-        }
-
-        .character-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 85, 204, 0.15);
-        }
-
-        .card-header {
-            position: relative;
-            height: 200px;
             overflow: hidden;
         }
 
-        .card-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .character-card:hover .card-header img {
-            transform: scale(1.05);
-        }
-
-        .character-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--csp-blue);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .panel-header {
+            background-color: var(--csp-medium);
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--csp-border);
+            font-size: 1.1rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .card-body {
+        .panel-content {
             padding: 20px;
         }
 
-        .character-name {
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            margin-bottom: 8px;
+        .character-avatar {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--csp-medium) 0%, var(--csp-dark) 100%);
+            border: 1px solid var(--csp-border);
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--csp-accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-name-main {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: center;
         }
 
         .character-alias {
-            color: var(--csp-blue);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--csp-accent);
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .character-info {
+        .character-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .character-tag {
+            background-color: rgba(74, 158, 255, 0.15);
+            color: var(--csp-accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+        }
+
+        .character-stats {
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-label {
+            color: var(--csp-text-dim);
+            font-size: 0.9rem;
+        }
+
+        .stat-value {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Right Panel - Character Details */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detail-card {
+            background-color: var(--csp-panel);
+            border-radius: 8px;
+            border: 1px solid var(--csp-border);
+            overflow: hidden;
+        }
+
+        .detail-header {
+            background-color: var(--csp-medium);
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--csp-border);
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-header i {
+            color: var(--csp-accent);
+        }
+
+        .detail-content {
+            padding: 25px;
+        }
+
+        /* Info Grid Layout */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .info-item {
@@ -237,252 +243,131 @@
         }
 
         .info-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 3px;
+            color: var(--csp-text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .info-value {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .card-footer {
-            padding: 15px 20px;
-            border-top: 1px solid var(--csp-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .view-details {
-            color: var(--csp-blue);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            background-color: var(--csp-medium);
+            border: 1px solid var(--csp-border);
+            border-radius: 6px;
+            padding: 12px 15px;
+            min-height: 46px;
             display: flex;
             align-items: center;
-            gap: 5px;
-            transition: color 0.2s;
         }
 
-        .view-details:hover {
-            color: var(--csp-blue-dark);
+        .info-value.highlight {
+            color: var(--csp-accent);
+            border-color: rgba(74, 158, 255, 0.3);
         }
 
-        .character-traits {
+        /* Color Swatches */
+        .color-swatches {
             display: flex;
-            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .color-swatch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 8px;
         }
 
-        .trait {
-            background-color: var(--csp-gray);
-            color: var(--text-secondary);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        /* Detailed Character View */
-        .character-detail {
-            display: none;
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 85, 204, 0.15);
-            margin-bottom: 60px;
-            border: 1px solid var(--csp-border);
-        }
-
-        .detail-header {
-            background: linear-gradient(135deg, var(--csp-blue) 0%, var(--csp-blue-dark) 100%);
-            color: white;
-            padding: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .detail-title h2 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-        }
-
-        .detail-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .close-detail {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
+        .swatch {
             width: 40px;
             height: 40px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.2s;
+            border-radius: 6px;
+            border: 2px solid var(--csp-border);
         }
 
-        .close-detail:hover {
-            background: rgba(255, 255, 255, 0.3);
+        .swatch-label {
+            font-size: 0.8rem;
+            color: var(--csp-text-dim);
         }
 
-        .detail-body {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 0;
+        .swatch-white {
+            background-color: #f5f5f5;
         }
 
-        .detail-image {
-            background-color: var(--csp-gray);
-            height: 100%;
-            min-height: 500px;
+        .swatch-grey {
+            background-color: #a0a0a0;
+        }
+
+        /* Traits Section */
+        .traits-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .detail-image i {
-            font-size: 8rem;
-            color: var(--csp-blue);
-            opacity: 0.5;
-        }
-
-        .detail-info {
-            padding: 40px;
-        }
-
-        .detail-section {
-            margin-bottom: 35px;
-        }
-
-        .detail-section h3 {
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--csp-border);
+        .trait {
+            background-color: var(--csp-medium);
+            border: 1px solid var(--csp-border);
+            border-radius: 6px;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .detail-section h3 i {
-            color: var(--csp-blue);
-        }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .detail-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .detail-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 5px;
-        }
-
-        .detail-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .highlight {
-            color: var(--csp-blue);
+        .trait i {
+            color: var(--csp-accent);
         }
 
         /* Footer */
-        footer {
-            background-color: var(--csp-dark-gray);
-            color: white;
-            padding: 50px 0 30px;
-            margin-top: 60px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: white;
+        .csp-footer {
+            background-color: var(--csp-panel);
+            border-top: 1px solid var(--csp-border);
+            padding: 25px 20px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--csp-text-dim);
         }
 
         .footer-links {
-            list-style: none;
+            display: flex;
+            gap: 20px;
         }
 
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
+        .footer-link {
+            color: var(--csp-text-dim);
             text-decoration: none;
             transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
+        .footer-link:hover {
+            color: var(--csp-text);
         }
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .detail-body {
+            .csp-container {
                 grid-template-columns: 1fr;
             }
             
-            .detail-image {
-                min-height: 300px;
+            .left-panel {
+                max-width: 500px;
+                margin: 0 auto;
             }
         }
 
         @media (max-width: 768px) {
-            .header-container {
+            .csp-header {
                 flex-direction: column;
+                height: auto;
+                padding: 15px;
                 gap: 15px;
-            }
-            
-            .nav-links {
-                gap: 20px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .character-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
-        @media (max-width: 576px) {
-            .character-grid {
-                grid-template-columns: 1fr;
             }
             
             .nav-links {
@@ -490,374 +375,275 @@
                 justify-content: center;
             }
             
-            .hero {
-                padding: 40px 0;
-            }
-            
-            .detail-info {
-                padding: 25px;
+            .info-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <span>OC Gallery</span>
+    <!-- Header -->
+    <header class="csp-header">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-user-circle"></i>
             </div>
-            <nav class="nav-links">
-                <a href="#" class="nav-link active">Gallery</a>
-                <a href="#" class="nav-link">Characters</a>
-                <a href="#" class="nav-link">Artwork</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="#" class="nav-link">Contact</a>
-            </nav>
+            <span>OC PROFILE</span>
         </div>
+        
+        <nav class="nav-links">
+            <a href="#" class="nav-link active">Character</a>
+            <a href="#" class="nav-link">Gallery</a>
+            <a href="#" class="nav-link">Story</a>
+            <a href="#" class="nav-link">Relationships</a>
+            <a href="#" class="nav-link">Settings</a>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="hero">
-            <h1>Original Character Portfolio</h1>
-            <p>A curated collection of unique original characters, designed and developed with creative storytelling in mind. Each character has a detailed backstory, personality, and visual design.</p>
-            <a href="#" class="cta-button">
-                <i class="fas fa-plus"></i>
-                Add New Character
-            </a>
-        </section>
-
-        <section>
-            <h2 class="section-title">Character Roster</h2>
-            <div class="character-grid" id="characterGrid">
-                <!-- Character cards will be generated by JavaScript -->
+    <!-- Main Content -->
+    <main class="csp-container">
+        <!-- Left Panel - Character Summary -->
+        <aside class="left-panel">
+            <div class="panel-header">
+                <span>Character Summary</span>
+                <i class="fas fa-ellipsis-v" style="color: var(--csp-text-dim); cursor: pointer;"></i>
             </div>
-        </section>
+            
+            <div class="panel-content">
+                <div class="character-avatar">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                
+                <h1 class="character-name-main">Theodore Alistair Sebastian</h1>
+                <div class="character-alias">"Theosphere"</div>
+                
+                <div class="character-tags">
+                    <span class="character-tag">OC</span>
+                    <span class="character-tag">16 Years Old</span>
+                    <span class="character-tag">Libra</span>
+                    <span class="character-tag">Half-Korean</span>
+                    <span class="character-tag">Vancouver</span>
+                </div>
+                
+                <div class="character-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">ID</span>
+                        <span class="stat-value">#OC-001</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Status</span>
+                        <span class="stat-value" style="color: var(--csp-highlight);">Active</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Created</span>
+                        <span class="stat-value">Oct 17, 2023</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Last Updated</span>
+                        <span class="stat-value">Today</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-        <section id="characterDetail" class="character-detail">
-            <!-- Detailed character view will be populated by JavaScript -->
+        <!-- Right Panel - Character Details -->
+        <section class="right-panel">
+            <!-- Basic Information Card -->
+            <div class="detail-card">
+                <div class="detail-header">
+                    <i class="fas fa-id-card"></i>
+                    <span>Basic Information</span>
+                </div>
+                
+                <div class="detail-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Legal Name</div>
+                            <div class="info-value">Theodore Alistair Sebastian</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Preferred Alias</div>
+                            <div class="info-value highlight">Theosphere (Thosphere)</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Age</div>
+                            <div class="info-value">16 Years</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Date of Birth</div>
+                            <div class="info-value">October 17</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Zodiac Sign</div>
+                            <div class="info-value">Libra ♎</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Blood Type</div>
+                            <div class="info-value">O Positive (O+)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appearance Card -->
+            <div class="detail-card">
+                <div class="detail-header">
+                    <i class="fas fa-user"></i>
+                    <span>Appearance</span>
+                </div>
+                
+                <div class="detail-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Height</div>
+                            <div class="info-value">5 feet, 9 inches (175 cm)</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Hair Color</div>
+                            <div class="info-value">White (professionally dyed)</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Eye Color</div>
+                            <div class="info-value">Grey</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <div class="info-label">Color Palette</div>
+                        <div class="color-swatches">
+                            <div class="color-swatch">
+                                <div class="swatch swatch-white"></div>
+                                <div class="swatch-label">Hair</div>
+                            </div>
+                            <div class="color-swatch">
+                                <div class="swatch swatch-grey"></div>
+                                <div class="swatch-label">Eyes</div>
+                            </div>
+                            <div class="color-swatch">
+                                <div class="swatch" style="background-color: #4a9eff;"></div>
+                                <div class="swatch-label">Accent</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Background Card -->
+            <div class="detail-card">
+                <div class="detail-header">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>Background & Heritage</span>
+                </div>
+                
+                <div class="detail-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Hometown</div>
+                            <div class="info-value">Vancouver, British Columbia, Canada</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Heritage</div>
+                            <div class="info-value">Half Korean, Half Scottish-Canadian</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Mother's Side</div>
+                            <div class="info-value">Korean</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Father's Side</div>
+                            <div class="info-value">Scottish-Canadian</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px;">
+                        <div class="info-label">Character Traits</div>
+                        <div class="traits-container">
+                            <div class="trait">
+                                <i class="fas fa-palette"></i>
+                                <span>Creative</span>
+                            </div>
+                            <div class="trait">
+                                <i class="fas fa-laptop-code"></i>
+                                <span>Tech-Savvy</span>
+                            </div>
+                            <div class="trait">
+                                <i class="fas fa-language"></i>
+                                <span>Bicultural</span>
+                            </div>
+                            <div class="trait">
+                                <i class="fas fa-brain"></i>
+                                <span>Introspective</span>
+                            </div>
+                            <div class="trait">
+                                <i class="fas fa-balance-scale"></i>
+                                <span>Balanced (Libra)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>OC Gallery</h3>
-                    <p>A portfolio for original characters, inspired by the clean design of Clip Studio Paint.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Gallery</a></li>
-                        <li><a href="#">Character Database</a></li>
-                        <li><a href="#">Artwork Showcase</a></li>
-                        <li><a href="#">Creator Profile</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Character Templates</a></li>
-                        <li><a href="#">Design Tips</a></li>
-                        <li><a href="#">Storytelling Guides</a></li>
-                        <li><a href="#">Community</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 OC Gallery. Inspired by Clip Studio Paint interface. All character designs are original creations.</p>
-            </div>
+    <!-- Footer -->
+    <footer class="csp-footer">
+        <div>
+            &copy; 2023 OC Profile - Theosphere. Designed with Clip Studio Paint aesthetic.
+        </div>
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link">Export Profile</a>
+            <a href="#" class="footer-link">Share</a>
+            <a href="#" class="footer-link">GitHub</a>
         </div>
     </footer>
 
     <script>
-        // Sample OC data - you can expand this with more characters
-        const ocCharacters = [
-            {
-                id: 1,
-                name: "Theodore Alistair Sebastian",
-                alias: "Theosphere",
-                age: "16 Years",
-                height: "5'9\" (175 cm)",
-                birthday: "October 17",
-                zodiac: "Libra",
-                hometown: "Vancouver, Canada",
-                heritage: "Half Korean, Half Scottish-Canadian",
-                hair: "White (professionally dyed)",
-                eyes: "Grey",
-                blood: "O+",
-                traits: ["Creative", "Tech-Savvy", "Bicultural", "Introspective"],
-                color: "#0075ff",
-                icon: "fas fa-user-astronaut"
-            },
-            {
-                id: 2,
-                name: "Luna Mei Takahashi",
-                alias: "Lunastra",
-                age: "17 Years",
-                height: "5'4\" (163 cm)",
-                birthday: "March 3",
-                zodiac: "Pisces",
-                hometown: "Tokyo, Japan",
-                heritage: "Japanese-American",
-                hair: "Silver-blue",
-                eyes: "Violet",
-                blood: "AB-",
-                traits: ["Artistic", "Empathetic", "Dreamer", "Musical"],
-                color: "#9d4edd",
-                icon: "fas fa-moon"
-            },
-            {
-                id: 3,
-                name: "Alexander ",
-                alias: "Ironclad",
-                age: "19 Years",
-                height: "6'1\" (185 cm)",
-                birthday: "July 22",
-                zodiac: "Leo",
-                hometown: "Berlin, Germany",
-                heritage: "German-Russian",
-                hair: "Platinum Blonde",
-                eyes: "Blue",
-                blood: "B+",
-                traits: ["Strategic", "Protective", "Leader", "Determined"],
-                color: "#ff6d00",
-                icon: "fas fa-shield-alt"
-            },
-            {
-                id: 4,
-                name: "Sakura Hana",
-                alias: "Blossom",
-                age: "15 Years",
-                height: "5'2\" (157 cm)",
-                birthday: "April 5",
-                zodiac: "Aries",
-                hometown: "Kyoto, Japan",
-                heritage: "Japanese",
-                hair: "Pink Ombre",
-                eyes: "Brown",
-                blood: "A+",
-                traits: ["Energetic", "Optimistic", "Artistic", "Traditional"],
-                color: "#ff5d8f",
-                icon: "fas fa-flower"
-            },
-            {
-                id: 5,
-                name: "Elara Nightshade",
-                alias: "Stella",
-                age: "18 Years",
-                height: "5'7\" (170 cm)",
-                birthday: "December 14",
-                zodiac: "Sagittarius",
-                hometown: "Edinburgh, Scotland",
-                heritage: "Scottish-Irish",
-                hair: "Raven Black",
-                eyes: "Green",
-                blood: "O-",
-                traits: ["Mysterious", "Intelligent", "Independent", "Observant"],
-                color: "#38b000",
-                icon: "fas fa-star"
-            },
-            {
-                id: 6,
-                name: "Kairos Valerius",
-                alias: "Chrono",
-                age: "20 Years",
-                height: "5'11\" (180 cm)",
-                birthday: "February 29",
-                zodiac: "Pisces",
-                hometown: "Athens, Greece",
-                heritage: "Greek-Italian",
-                hair: "Dark Brown",
-                eyes: "Amber",
-                blood: "A-",
-                traits: ["Analytical", "Time-conscious", "Philosophical", "Precise"],
-                color: "#00bbf9",
-                icon: "fas fa-clock"
-            }
-        ];
-
-        // Function to generate character cards
-        function generateCharacterCards() {
-            const grid = document.getElementById('characterGrid');
-            grid.innerHTML = '';
-            
-            ocCharacters.forEach(character => {
-                const card = document.createElement('div');
-                card.className = 'character-card';
-                card.dataset.id = character.id;
-                
-                card.innerHTML = `
-                    <div class="card-header" style="background-color: ${character.color}20;">
-                        <div class="character-tag">OC</div>
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: ${character.color}; font-size: 5rem;">
-                            <i class="${character.icon}"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="character-name">
-                            <span>${character.name}</span>
-                        </div>
-                        <div class="character-alias">"${character.alias}"</div>
-                        <div class="character-info">
-                            <div class="info-item">
-                                <span class="info-label">Age</span>
-                                <span class="info-value">${character.age}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Height</span>
-                                <span class="info-value">${character.height}</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Zodiac</span>
-                                <span class="info-value">${character.zodiac}</span>
-                            </div>
-                        </div>
-                        <div class="character-traits">
-                            ${character.traits.map(trait => `<span class="trait">${trait}</span>`).join('')}
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="view-details" data-id="${character.id}">
-                            <i class="fas fa-arrow-right"></i>
-                            View Details
-                        </a>
-                        <span style="font-size: 0.8rem; color: var(--text-secondary);">ID: ${character.id.toString().padStart(3, '0')}</span>
-                    </div>
-                `;
-                
-                grid.appendChild(card);
-            });
-            
-            // Add event listeners to "View Details" buttons
-            document.querySelectorAll('.view-details').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const id = parseInt(this.dataset.id);
-                    showCharacterDetail(id);
-                });
-            });
-        }
-
-        // Function to show character detail view
-        function showCharacterDetail(id) {
-            const character = ocCharacters.find(c => c.id === id);
-            if (!character) return;
-            
-            const detailSection = document.getElementById('characterDetail');
-            
-            detailSection.innerHTML = `
-                <div class="detail-header">
-                    <div class="detail-title">
-                        <h2>${character.name}</h2>
-                        <div class="detail-subtitle">Alias: "${character.alias}"</div>
-                    </div>
-                    <button class="close-detail">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="detail-body">
-                    <div class="detail-image" style="background-color: ${character.color}10;">
-                        <i class="${character.icon}" style="color: ${character.color};"></i>
-                    </div>
-                    <div class="detail-info">
-                        <div class="detail-section">
-                            <h3><i class="fas fa-id-card"></i> Basic Information</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <span class="detail-label">Age</span>
-                                    <span class="detail-value">${character.age}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Height</span>
-                                    <span class="detail-value">${character.height}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Date of Birth</span>
-                                    <span class="detail-value">${character.birthday}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Zodiac Sign</span>
-                                    <span class="detail-value">${character.zodiac}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Blood Type</span>
-                                    <span class="detail-value">${character.blood}</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h3><i class="fas fa-globe-americas"></i> Background</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <span class="detail-label">Hometown</span>
-                                    <span class="detail-value">${character.hometown}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Heritage</span>
-                                    <span class="detail-value">${character.heritage}</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h3><i class="fas fa-palette"></i> Appearance</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <span class="detail-label">Hair Color</span>
-                                    <span class="detail-value">${character.hair}</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Eye Color</span>
-                                    <span class="detail-value">${character.eyes}</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h3><i class="fas fa-star"></i> Character Traits</h3>
-                            <div class="character-traits">
-                                ${character.traits.map(trait => `<span class="trait">${trait}</span>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Show the detail section
-            detailSection.style.display = 'block';
-            
-            // Scroll to detail section
-            detailSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Add event listener to close button
-            detailSection.querySelector('.close-detail').addEventListener('click', function() {
-                detailSection.style.display = 'none';
-                document.getElementById('characterGrid').scrollIntoView({ behavior: 'smooth' });
-            });
-        }
-
-        // Initialize the page
+        // Simple interactivity
         document.addEventListener('DOMContentLoaded', function() {
-            generateCharacterCards();
-            
-            // Add active state to navigation links
-            document.querySelectorAll('.nav-link').forEach(link => {
+            // Active navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    navLinks.forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
                 });
             });
             
-            // CTA button functionality
-            document.querySelector('.cta-button').addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('In a real implementation, this would open a form to add a new character!');
+            // Add hover effect to trait items
+            const traits = document.querySelectorAll('.trait');
+            traits.forEach(trait => {
+                trait.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'var(--csp-light)';
+                    this.style.borderColor = 'var(--csp-accent)';
+                });
+                
+                trait.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                    this.style.borderColor = '';
+                });
+            });
+            
+            // Character tag click effect
+            const tags = document.querySelectorAll('.character-tag');
+            tags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
             });
         });
     </script>
